@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<h:body>
+
+    <h:form>
+
+        <p:panel>
+            <f:facet name="header">
+                New Student
+                <p:commandButton action="#{studentController.refresh()}"
+                                 icon="pi pi-refresh" update="@form" process="@this"/>
+            </f:facet>
+            <h:panelGrid columns="2">
+                <p:outputLabel value="name"/>
+                <p:inputText value="#{studentController.student.name}"
+                             required="true"/>
+                <p:outputLabel value="email"/>
+                <p:inputText value="#{studentController.student.email}"
+                             required="true"/>
+                <p:outputLabel value="phoneNo"/>
+                <p:inputText value="#{studentController.student.phoneNo}"
+                               required="true"/>
+               
+           
+                <p:commandButton value="Save" action="#{studentController.save()}"
+                                 update="@form" process="@parent"/>
+
+            </h:panelGrid>
+        </p:panel>
+
+        <br/>
+
+        <p:panel>
+            <f:facet name="header">
+                Students
+                <p:commandButton action="#{studentController.getAllStudents()}"
+                                 icon="pi pi-refresh" update="@form" process="@this"/>
+            </f:facet>
+            <p:dataTable var="student" value="#{studentController.studentList}"
+                         rows="4" >
+
+
+                <p:column headerText="name">
+                    <h:outputText value="#{student.name}"/>
+                </p:column>
+
+                <p:column headerText="email">
+                    <h:outputText value="#{student.email}"/>
+                </p:column>
+
+                <p:column headerText="phoneNo">
+                    <h:outputText value="#{student.phoneNo}"/>
+                </p:column>
+
+                <p:column headerText="Options" width="10%">
+                    <p:commandButton icon="pi pi-pencil" action="#{studentController.edit(student)}"
+                                     update="@form" process="@this"/>
+                </p:column>
+
+            </p:dataTable>
+        </p:panel>
+    </h:form>
+
+</h:body>
+</html>
