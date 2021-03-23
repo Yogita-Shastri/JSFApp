@@ -23,36 +23,44 @@ public class StudentController implements Serializable {
 	@Autowired
 	private StudentRepository repository;
 	
+	//To get all students
 	public void getAllStudents() {
 		studentList = repository.findAll();
 	}
 	
+	//To save student
 	public void save() {
 		repository.save(student);
 		student = new Student();
 		studentList = repository.findAll();
 	}
 	
+	//Editing each student record
 	public void edit(Student st) {
 		student = st;
 	}
 	
+	//To refresh 
 	public void refresh() {
 		student = new Student();
 	}
 	
+	//getter method for studentList variable
 	public List<Student> getStudentList() {
 		return studentList;
 	}
 	
+	//setter method for studentList variable
 	public void setStudentList(List<Student> studentList) {
 		this.studentList = studentList;
 	}
 	
+	//getter method for student variable
 	public Student getStudent() {
 		return student;
 	}
 
+	//setter method for student variable
 	public void setStudent(Student student) {
 		this.student = student;
 	}
